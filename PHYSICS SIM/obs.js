@@ -15,7 +15,7 @@ class Observer{
         drag.normalize();
         drag.mult(-1);
         
-        let coef = 0.01;
+        let coef = 0.001;
         let speedSq = this.vel.magSq();
         drag.setMag(coef * speedSq);
 
@@ -50,7 +50,7 @@ class Observer{
             this.vel.y *= -1;
           }
           
-      //FOR INFINITE MOTION
+      //FOR INFINITE MOTION IN POSITIVE D
           if (this.pos.x >= width - this.r) {
             this.pos.x = 0;
           }
@@ -63,9 +63,10 @@ class Observer{
             this.pos.x = this.r;
           }
           // FOR LEFT WALL TO BOUNCE OFF OF
-          //else if (this.pos.x <= this.r) {
-            //this.pos.x = this.r;
-            //this.vel.x *= -1;}
+          else if (this.pos.x <= this.r) {
+            this.pos.x = this.r;
+            this.vel.x *= -1;
+        }
     }
 
     update() {
@@ -73,7 +74,7 @@ class Observer{
         this.vel.add(this.acc);
         
         //VELOCITY AS A WHOLE
-        this.vel.limit(this.c/2); //To limit velocity
+        this.vel.limit(this.c/4); //To limit velocity
         this.pos.add(this.vel);
            
         this.acc.set(0, 0);
@@ -105,22 +106,4 @@ class Observer{
         }
     }
 }
-
-//let t = 0;
-
-//let speedSq = this.vel.magSq();
-
-//function incrementSeconds() {
-  //if (mouseIsPressed) {
-    //t += 1;
-    //console.log(t);
-    //let T = t / (Math.sqrt(1 - (speedSq/(this.c**2))))
-    //console.log(T)
- // }
-//}
-
-//let cancel = setInterval(incrementSeconds, 1000);
-
-// (Delta t')
-
 
