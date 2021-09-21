@@ -12,8 +12,14 @@ function draw() {
   background(0);
 
   if (mouseIsPressed){ // CONTROLS ACCELERATION IN X-AXIS
-     let accel = createVector(1000000, 0);
+    if (mouseButton === LEFT) {
+     let accel = createVector(1, 0);
      observer.applyForce(accel);
+    }
+    if (mouseButton === RIGHT) {
+     let stop = createVector(-1, 0);
+     observer.applyForce(stop);
+    }
   }
 
     // GRAVITY VECTOR
@@ -28,29 +34,3 @@ function draw() {
   observer.show();
   setInterval(observer.TimeDilation(), 1000);
 }
-
-// SECONDS COUNTER (delta t)
-//let t = 0;
-
-//function incrementSeconds() {
-  //if (mouseIsPressed) {
-    //t += 1;
-    //console.log(t);
-  //}
-//}
-
-//let cancel = setInterval(incrementSeconds, 1000);
-
-// (Delta t')
-
-
-
-  //FOR NOW F = a DUE TO m = 1
-  //x = x + v 
-  // Moving up at a constant speed
-  //y = y
-  
-  // Reset to the bottom
-  //if (x < 0) {
-    //x = width;
-  //}
